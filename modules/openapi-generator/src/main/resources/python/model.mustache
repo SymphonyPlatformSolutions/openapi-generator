@@ -2,6 +2,7 @@
 
 import re  # noqa: F401
 import sys  # noqa: F401
+from typing import List
 
 from {{packageName}}.model_utils import (  # noqa: F401
     ApiTypeError,
@@ -22,9 +23,8 @@ from {{packageName}}.model_utils import (  # noqa: F401
 {{#imports}}
 {{#-first}}
 
-def lazy_import():
 {{/-first}}
-    {{{.}}}
+{{{.}}}
 {{/imports}}
 
 

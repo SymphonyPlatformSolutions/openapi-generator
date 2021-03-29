@@ -271,6 +271,13 @@ public class CodegenModel implements IJsonSchemaValidationProperties {
         this.description = description;
     }
 
+    public String getDataTypeHint() {
+        if(this.dataType.startsWith("[") && this.dataType.endsWith("]")) {
+            return "List" + this.dataType;
+        }
+        return this.dataType;
+    }
+
     /**
      * Returns the discriminator for this schema object, or null if no discriminator has been specified.
      *
