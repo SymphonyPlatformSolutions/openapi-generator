@@ -8,13 +8,15 @@
     ])
 
 {{> model_templates/method_init_shared }}
-
 {{#isEnum}}
         self.value = value
 {{/isEnum}}
 {{#requiredVars}}
-        self.{{name}} = {{name}}
+        self.{{name}}: {{{dataTypeHint}}} = {{name}}
 {{/requiredVars}}
+{{#optionalVars}}
+        self.{{name}}: {{{dataTypeHint}}} = None
+{{/optionalVars}}
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
