@@ -111,6 +111,9 @@
 {{#discriminator}}
 {{#mappedModels}}
 {{#-first}}
+{{#discriminatorImports}}
+        {{{.}}}
+{{/discriminatorImports}}
 {{/-first}}
 {{/mappedModels}}
         val = {

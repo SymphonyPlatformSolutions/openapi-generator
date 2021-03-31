@@ -80,6 +80,7 @@ public class CodegenModel implements IJsonSchemaValidationProperties {
     public Set<String> allMandatory = new TreeSet<String>(); // with parent's required properties
 
     public Set<String> imports = new TreeSet<String>();
+    public Set<String> discriminatorImports = new TreeSet<String>();
     public boolean hasVars, emptyVars, hasMoreModels, hasEnums, isEnum, hasValidation;
     /**
      * Indicates the OAS schema specifies "nullable: true".
@@ -951,7 +952,7 @@ public class CodegenModel implements IJsonSchemaValidationProperties {
         }
         for (CodegenDiscriminator.MappedModel mm : discriminator.getMappedModels()) {
             if (!"".equals(mm.getModelName())) {
-                imports.add(mm.getModelName());
+                discriminatorImports.add(mm.getModelName());
             }
         }
     }

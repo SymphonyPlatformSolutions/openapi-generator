@@ -17,6 +17,7 @@
 package org.openapitools.codegen.languages;
 
 import com.google.common.collect.Sets;
+import com.sun.imageio.plugins.common.SingleTileRenderedImage;
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.oas.models.media.*;
 import io.swagger.v3.oas.models.media.ArraySchema;
@@ -380,13 +381,8 @@ public class PythonClientCodegen extends PythonLegacyClientCodegen {
                     List<Map<String, Object>> models = (List<Map<String, Object>>) objModel.get("models");
                     for (Map<String, Object> model : models) {
                         CodegenModel cm = (CodegenModel) model.get("model");
-                        String[] importModelNames = cm.imports.toArray(new String[0]);
-                        cm.imports.clear();
-                        for (String importModelName : importModelNames) {
-                            cm.imports.add(toModelImport(importModelName));
-                            String globalImportFixer = "globals()['" + importModelName + "'] = " + importModelName;
-                            cm.imports.add(globalImportFixer);
-                        }
+                        cm.imports = getPythonImports(cm.imports);
+                        cm.discriminatorImports = getPythonImports(cm.discriminatorImports);
                     }
                 }
             }
@@ -397,6 +393,15 @@ public class PythonClientCodegen extends PythonLegacyClientCodegen {
         }
 
         return objs;
+    }
+
+    private Set<String> getPythonImports(Set<String> imports) {
+        Set<String> transformedImports = new TreeSet<>();
+        for (String importModelName : imports) {
+            transformedImports.add(toModelImport(importModelName));
+            transformedImports.add("globals()['" + importModelName + "'] = " + importModelName);
+        }
+        return transformedImports;
     }
 
     /**
