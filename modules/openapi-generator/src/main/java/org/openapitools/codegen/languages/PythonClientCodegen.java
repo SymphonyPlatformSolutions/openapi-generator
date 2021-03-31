@@ -17,7 +17,6 @@
 package org.openapitools.codegen.languages;
 
 import com.google.common.collect.Sets;
-import com.sun.imageio.plugins.common.SingleTileRenderedImage;
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.oas.models.media.*;
 import io.swagger.v3.oas.models.media.ArraySchema;
