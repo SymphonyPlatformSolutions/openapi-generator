@@ -67,7 +67,7 @@
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 {{#requiredVars}}
-        self.{{name}}: {{{dataTypeHint}}} = {{name}}
+        self.{{name}}: {{{dataTypeHint}}} = kwargs['{{name}}']
 {{/requiredVars}}
 {{#optionalVars}}
         self.{{name}}: {{{dataTypeHint}}} = None

@@ -14,7 +14,7 @@
 {{/isEnum}}
 {{#requiredVars}}
 {{^isReadOnly}}
-        self.{{name}}: {{{dataTypeHint}}} = {{name}}  # TODO check if ^read-only useful
+        self.{{name}}: {{{dataTypeHint}}} = {{name}}
 {{/isReadOnly}}
 {{/requiredVars}}
 {{#optionalVars}}
