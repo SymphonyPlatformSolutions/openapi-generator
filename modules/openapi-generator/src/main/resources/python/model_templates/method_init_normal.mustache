@@ -18,7 +18,7 @@
 {{/isReadOnly}}
 {{/requiredVars}}
 {{#optionalVars}}
-        self.{{name}}: {{{dataTypeHint}}} = None
+        self.{{name}}: {{{dataTypeHint}}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{^defaultValue}} = None{{/defaultValue}}
 {{/optionalVars}}
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
